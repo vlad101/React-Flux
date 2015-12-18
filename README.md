@@ -3,6 +3,7 @@ Run App
 ========
 
 - $ git clone https://github.com/vlad101/React-Flux.git
+- $ cd /path/to/app
 - $ npm install
 
 ==================

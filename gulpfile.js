@@ -10,11 +10,12 @@ var concat = require('gulp-concat'); // Concatenate files
 var lint = require('gulp-eslint'); // Lint JS files, including JSX
 
 var config = {
-	port: 9085,
+	port: 9000,
 	devBaseUrl: 'http://localhost',
 	paths: {
 		html: './src/*.html',
 		js: './src/**/*.js',
+		images: './src/images/*',
 		css: [
 			'node_modules/bootstrap/dist/css/bootstrap.min.css',
 			'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
@@ -47,7 +48,7 @@ gulp.task('html', function() {
 		.pipe(connect.reload());
 });
 
-// Watch for js file changes, transform JSX, bundle as one file, reload 
+// Watch for js file changes, transform JSX, bundle as one file. migrate js to dist folder, reload 
 gulp.task('js', function() {
 	browserify(config.paths.mainJs)
 		.transform(reactify)
@@ -58,11 +59,22 @@ gulp.task('js', function() {
 		.pipe(connect.reload())
 });
 
-// Watch for css file changes
+// Watch for css file changes, migrate css to dist folder
 gulp.task('css', function() {
 	gulp.src(config.paths.css)
 	.pipe(concat('bundle.css'))
 	.pipe(gulp.dest(config.paths.dist + '/css'))
+});
+
+// Watch for image file changes, migrate images to dist folder
+gulp.task('images', function() {
+	gulp.src(config.paths.images)
+	.pipe(gulp.dest(config.paths.dist + '/images'))
+	.pipe(connect.reload());
+
+	// publish favicon
+	gulp.src('./src/favicon.ico')
+		.pipe(gulp.dest(config.paths.dist));
 });
 
 // Set rules
@@ -79,4 +91,4 @@ gulp.task('watch', function() {
 });
 
 // Run html and open tasks by default
-gulp.task('default', ['html', 'js', 'css', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'css', 'images', 'lint', 'open', 'watch']);
