@@ -26,6 +26,9 @@ Environment setup
 - Install React
 	- $ npm install --save react@0.13.3 react-router@0.13.3 flux@2.0.3
 
+- Install lodash
+	- $ npm install --save lodash
+
 - Set up gulp config
 	- $ cd /path/to/app && mkdir dist src
 	- create gulpfile.js and populate it with gulp tasks
