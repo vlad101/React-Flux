@@ -29,6 +29,9 @@ Environment setup
 - Install lodash
 	- $ npm install --save lodash
 
+- Install toastr
+	- $ npm install --save toastr@2.1.0
+
 - Set up gulp config
 	- $ cd /path/to/app && mkdir dist src
 	- create gulpfile.js and populate it with gulp tasks
