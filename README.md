@@ -32,6 +32,9 @@ Environment setup
 - Install toastr
 	- $ npm install --save toastr@2.1.0
 
+- Install object-assign
+	- npm install --save object-assign
+
 - Set up gulp config
 	- $ cd /path/to/app && mkdir dist src
 	- create gulpfile.js and populate it with gulp tasks
